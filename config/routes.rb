@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :cars, except: :index do
     get :listmycars, on: :collection
 
-    resources :reviews, only: [:new, :create, :index]
+    resources :reviews, only: [:new, :create]
   end
   resources :reviews, only: :destroy
   resources :bookings
@@ -34,7 +34,6 @@ end
 # PUT    /bookings/:id     bookings#update
 # DELETE /bookings/:id      bookings#destroy
 
-# GET    /cars/:car_id/reviews    reviews#index
 # POST   /cars/:car_id/reviews     reviews#create
 # GET    /cars/:car_id/reviews/new reviews#new
 # DELETE /reviews/:id           reviews#destroy
