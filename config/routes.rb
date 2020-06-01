@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'cars#index'
+  root to: "pages#home"
+  # root to: 'cars#index'
   resources :cars, except: :index do
     get :listmycars, on: :collection
 
