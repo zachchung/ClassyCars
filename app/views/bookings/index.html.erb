@@ -1,7 +1,12 @@
 <h1>My upcoming classy rentals</h1>
 
   <% @bookings.each do |booking| %>
-    <div class="card p-2 mb-2"><p>
+    <% if booking.status == "cancelled" %>
+      <div class="card p-2 mb-2" style="background-color: #FBC5B1">
+    <% else %>
+      <div class="card p-2 mb-2" style="background-color: #DDF3CE">
+    <% end %>
+    <p>
       <strong> Classy Model:</strong> <%= link_to booking.car.name, booking_path(booking) %>
       <br>
       <strong> Location:</strong> <%= booking.car.location %>
