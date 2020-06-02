@@ -18,9 +18,9 @@
     <input type="submit" value="Book NOW" />
 </form> -->
 <%= simple_form_for(@booking, method: :post, url: bookings_path) do |f| %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.hidden_field :car, :value => @car.id %>
+  <%= f.input :start_date, as: :string, id: :start_date, required: false, input_html: {class: "datepicker"} %>
+  <%= f.input :end_date, as: :string, id: :end_date, required: false, input_html: {class: "datepicker"} %>
+  <%= f.hidden_field :car, value: @car.id %>
   <%= f.submit 'New user' %>
 <% end %>
 
