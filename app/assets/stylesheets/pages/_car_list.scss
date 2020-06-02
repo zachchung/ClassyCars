@@ -1,8 +1,8 @@
 .cars-list {
   flex-grow: 1;
   flex-shrink: 1;
-  li {
-    list-style: none;
+  .card {
+    border: none;
   }
 }
 #map {
