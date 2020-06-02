@@ -1,17 +1,20 @@
 require 'date'
 
 class BookingsController < ApplicationController
+  # confirm page:
   def new
-    # BEING PASSED
+    # GET FROM PARAMS
     @car = Car.new(name: "Porsche 911", price: 500, location: "Melbourne")
     @start_date = Date.parse('28-12-2010')
     @end_date = Date.parse('31-12-2010')
     # END
 
     @days = (@end_date - @start_date).to_i
-    @booking = Booking.new
     @booking_price = @car.price * @days
+    # @booking = Booking.new
   end
+
+  private
 
   def create
     @booking = Booking.new(booking_params)
@@ -22,7 +25,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  private
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :booking_price)

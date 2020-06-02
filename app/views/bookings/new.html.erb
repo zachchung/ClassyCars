@@ -1,11 +1,11 @@
 <div class="d-flex justify-content-between">
   <div>
-    <h1>Review car rules</h1>
-    <p> <%= @days %> days in <%= @car.location %> </p>
+    <h1>Confirmation</h1>
+    <p> Congratulations! <%= @days %> days in <%= @car.location %> </p>
     <p> TODO: insert car photo here </p>
 
     <%# change path %>
-    <%= link_to "Agree and continue", root_path , class: "btn btn-primary" %>
+    <%= link_to "Confirm booking", root_path , class: "btn btn-primary" %>
   </div>
 
   <div class="card m-2 p-2">
