@@ -1,1 +1,15 @@
-<h1>Your upcoming classy cars:</h1>
+<h1>My upcoming classy rentals</h1>
+
+  <% @bookings.each do |booking| %>
+    <div class="card p-2 mb-2"><p>
+      <strong> Classy Model:</strong> <%= link_to booking.car.name, booking_path(booking) %>
+      <br>
+      <strong> Location:</strong> <%= booking.car.location %>
+      <br>
+      <strong> Dates:</strong> <%= booking.start_date.strftime("%B %d, %Y") %> - <%= booking.end_date.strftime("%B %d, %Y") %>
+      <br>
+      <strong> Itenerary # </strong>  <%= booking.id %>
+      <br>
+      <strong> Status: </strong>  <%= booking.status %>
+    </p></div>
+  <% end %>
