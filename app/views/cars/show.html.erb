@@ -21,7 +21,7 @@
   <%= f.input :start_date %>
   <%= f.input :end_date %>
   <%= f.input :car_id, :as => "hidden", :input_html => { :value => @car.id } %>
-  <%= f.input :user_id, :as => "hidden", :input_html => { :value => @user.id } %>
+  <%= f.input :user_id, :as => "hidden", :input_html => { :value => @car.user.id } %>
 
   <!-- <input type="submit" value="Resend">
        <input name="user[email]" type="hidden" value="user@yahoo.com"> -->
