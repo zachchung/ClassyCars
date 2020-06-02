@@ -1,0 +1,13 @@
+.cars-list {
+  flex-grow: 1;
+  flex-shrink: 1;
+  li {
+    list-style: none;
+  }
+}
+#map {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background-color: grey;
+}

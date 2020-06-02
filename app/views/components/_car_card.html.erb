@@ -1,0 +1,14 @@
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <%= render 'components/photo_carousel', car: car %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= car.name %></h5>
+        <p class="card-text">Made in <%= car.year %>, <%= car.seats %> seats</p>
+        <p id="price" class="card-text"><small class="text-muted"><%= car.price %> per day</small></p>
+      </div>
+    </div>
+  </div>
+</div>

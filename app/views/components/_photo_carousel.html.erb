@@ -1,0 +1,26 @@
+<% unique_id = "carouselIndicators-#{car.id}" %>
+<% unique_href = "##{unique_id}" %>
+
+<div id=<%= unique_id %> class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target=<%= unique_href %> data-slide-to="0" class="active"></li>
+    <% 2.times do |time| %>
+      <li data-target=<%= unique_href %> data-slide-to="<%= time + 1 %>"></li>
+    <% end %>
+  </ol>
+  <div class="carousel-inner">
+    <% 3.times do |time| %>
+      <div class="carousel-item <%= "active" if time == 0 %>">
+        <img src="https://place-hold.it/300x300" class="d-block w-100" alt="cars photos">
+      </div>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href=<%= unique_href %> role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href=<%= unique_href %> role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
