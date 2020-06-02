@@ -36,9 +36,10 @@ gem 'simple_form'
 gem 'devise'
 
 group :development, :test do
+  gem 'faker'
+  gem 'dotenv-rails'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'dotenv-rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
