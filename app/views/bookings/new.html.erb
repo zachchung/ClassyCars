@@ -1,16 +1,23 @@
 <div class="d-flex justify-content-between">
   <div>
     <h1>Confirmation</h1>
-    <p> Congratulations! <%= @days %> days in <%= @car.location %> </p>
-    <p> TODO: insert car photo here </p>
+    <p>
+      Congratulations!
+      <br><br>
+      You have booked a car in <%= @car.location %> for <%= @days %> days
+      <br><br>
+      TODO: insert car photo here
+      <br><br>
+      Booking reference: <%#= @booking.id %>
+    </p>
 
-    <%# change path %>
-    <%= link_to "Confirm booking", root_path , class: "btn btn-primary" %>
+    <%# TODO: change path %>
+    <%= link_to "Upcoming bookings", root_path , class: "btn btn-primary" %>
   </div>
 
   <div class="card m-2 p-2">
     <h1><%= @car.name %></h1>
-    <p> <%= @start_date %> -> <%= @end_date %> </p>
+    <p> <%= @start_date.strftime("%B %d, %Y") %> -> <%= @end_date.strftime("%B %d, %Y") %> </p>
     <p> $<%= @car.price %> x <%= @days %> days </p>
     <p> Total price: $<%= @booking_price %> </p>
 
