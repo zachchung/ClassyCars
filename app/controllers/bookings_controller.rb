@@ -16,6 +16,15 @@ class BookingsController < ApplicationController
     # @booking = Booking.new
   end
 
+  def create
+    @booking = Booking.new(booking_params)
+    if @booking.save
+      redirect_to @booking
+    else
+      render :new
+    end
+  end
+
   def index
     @bookings = Booking.where(user: current_user)
   end
@@ -31,7 +40,7 @@ class BookingsController < ApplicationController
   #   end
   # end
 
-  # def booking_params
-  #   params.require(:booking).permit(:start_date, :end_date, :booking_price)
-  # end
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date)
+  end
 end

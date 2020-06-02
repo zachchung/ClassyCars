@@ -1,8 +1,10 @@
 <h1>Here is your Car</h1>
 <br>
 <p> Your car details are as follows</p>
-<ul>
+<div class="shadow p-3 mb-5 bg-white rounded">
 
+<ul>
+<br>
 <li><h4>Name: <%= @car.name %></h4></li>
 <li><h4>Location: <%= @car.location %></h4></li>
 <li><h4>Price/day: <%= @car.price %></h4></li>
@@ -10,8 +12,16 @@
 <li><h4>Make year: <%= @car.year %></h4></li>
 
 </ul>
+</div>
 
-<%= simple_form_for @booking %>
-
+<!-- <form action="/bookings/new">
+    <input type="submit" value="Book NOW" />
+</form> -->
+<%= simple_form_for(@booking, method: :post, url: bookings_path) do |f| %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.hidden_field :car, :value => @car.id %>
+  <%= f.submit 'New user' %>
+<% end %>
 
 
