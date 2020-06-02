@@ -11,8 +11,7 @@
       Booking reference: <%#= @booking.id %>
     </p>
 
-    <%# TODO: change path %>
-    <%= link_to "Upcoming bookings", root_path , class: "btn btn-primary" %>
+    <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
   </div>
 
   <div class="card m-2 p-2">
@@ -23,5 +22,3 @@
 
   </div>
 </div>
-
-<%#= render 'form', booking: @booking %>
