@@ -2,7 +2,7 @@ require 'faker'
 
 puts "--- Starting populating database"
 suburbs = %w[Brunswick Melbourne South\ Yarra Docklands South\ Melbourne Footscray];
-booking_status = %w[confirmed cancelled renting]
+booking_status = %w[confirmed cancelled returned renting]
 
 # Sample Users
 puts "--- Generate User"
