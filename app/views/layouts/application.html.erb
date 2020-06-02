@@ -15,10 +15,22 @@
   <body>
     <%= render 'shared/navbar' %>
     <div class="container">
+<<<<<<< HEAD
       <%= yield %>
     </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= render 'shared/flashes' %>
+=======
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+          <%= yield %>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= render 'shared/flashes' %>
+        </div>
+      </div>
+    </div>
+>>>>>>> master
   </body>
 </html>

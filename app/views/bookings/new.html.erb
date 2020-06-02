@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-between">
+  <div>
+    <h1>Confirmation</h1>
+    <p>
+      Congratulations!
+      <br><br>
+      You have booked a car in <%= @car.id %> for <%= @days %> days
+      <br><br>
+      TODO: insert car photo here
+      <br><br>
+      Booking reference: <%#= @booking.id %>
+    </p>
+
+    <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
+  </div>
+
+  <div class="card m-2 p-2">
+    <h1><%= @car.name %></h1>
+    <p> <%= @start_date.strftime("%B %d, %Y") %> -> <%= @end_date.strftime("%B %d, %Y") %> </p>
+    <p> $<%= @car.price %> x <%= @days %> days </p>
+    <p> Total price: $<%= @booking_price %> </p>
+
+  </div>
+</div>
