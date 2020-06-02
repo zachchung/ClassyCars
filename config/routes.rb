@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   # root to: 'cars#index'
-  resources :cars, except: :index do
+  resources :cars do
     get :listmycars, on: :collection
 
     resources :reviews, only: [:new, :create]
