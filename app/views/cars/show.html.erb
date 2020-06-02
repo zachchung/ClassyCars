@@ -20,7 +20,11 @@
 <%= simple_form_for(@booking, method: :post, url: bookings_path) do |f| %>
   <%= f.input :start_date %>
   <%= f.input :end_date %>
-  <%= f.hidden_field :car, :value => @car.id %>
+  <%= f.input :car_id, :as => "hidden", :input_html => { :value => @car.id } %>
+  <%= f.input :user_id, :as => "hidden", :input_html => { :value => @user.id } %>
+
+  <!-- <input type="submit" value="Resend">
+       <input name="user[email]" type="hidden" value="user@yahoo.com"> -->
   <%= f.submit 'New user' %>
 <% end %>
 
