@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-between">
+  <div>
+    <h1>Review car rules</h1>
+    <p> <%= @days %> days in <%= @car.location %> </p>
+    <p> TODO: insert car photo here </p>
+
+    <%# change path %>
+    <%= link_to "Agree and continue", root_path , class: "btn btn-primary" %>
+  </div>
+
+  <div class="card m-2 p-2">
+    <h1><%= @car.name %></h1>
+    <p> <%= @start_date %> -> <%= @end_date %> </p>
+    <p> $<%= @car.price %> x <%= @days %> days </p>
+    <p> Total price: $<%= @booking_price %> </p>
+
+  </div>
+</div>
+
+<%#= render 'form', booking: @booking %>
