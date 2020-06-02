@@ -37,6 +37,7 @@ puts "Finished generated User ---"
 
 # Sample Cars
 puts "--- Generate Car"
+users = User.all
 10.times do
   car = Car.new(
     name: "#{Faker::Vehicle.manufacture} #{Faker::Vehicle.make_and_model}",
@@ -45,8 +46,8 @@ puts "--- Generate Car"
     price: rand(50..100) + rand.floor(2),
     location: "#{suburbs.sample}, VIC, AU"
   )
-  # about 20% of chance the 
-  car.user = User.first if rand(1..5) == 3
+  # 1 Car always belong to 1 User, 1 User may not own a Car
+  car.user = users.sample
   car.save!
 end
 puts "Finished generated User ---"
