@@ -9,24 +9,24 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://via.placeholder.com/1920x1080" class="figure-img img-fluid rounded" alt="...">
+      <img src="/images/car1.jpg" class="figure-img img-fluid rounded" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <h5>Photo 1</h5>
+        <p>Super Car</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://via.placeholder.com/1920x1080" class="d.d-none-block w-100" alt="...">
+      <img src="/images/car2.jpg" class="d.d-none-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h5>Photo 2</h5>
+        <p>The ever green</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://via.placeholder.com/1920x1080" class="d-block w-100" alt="...">
+      <img src="/images/car3.jpg" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        <h5>Photo 3</h5>
+        <p>Red Devil</p>
       </div>
     </div>
   </div>
@@ -59,7 +59,7 @@
   <%= f.input :end_date %>
   <%= f.input :car_id, as: "hidden", input_html: { value: @car.id } %>
   <%= f.input :user_id, as: "hidden", input_html: { value: current_user.id } %>
-  <%= f.submit 'Book Now' %>
+  <%= f.submit 'Book Now', class: "btn btn-primary m-2"  %>
 <% end %>
 
 
