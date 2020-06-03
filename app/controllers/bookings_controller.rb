@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+
   booking_status = %w[pending confirmed cancelled returned renting]
 
   def new; end
