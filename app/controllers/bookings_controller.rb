@@ -7,7 +7,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.status = "pending"
-    # issues if booking dates are not valid, need to redirect_to show page again 
+    # issues if booking dates are not valid, need to redirect_to show page again
     if @booking.save
       redirect_to @booking
     else
@@ -22,7 +22,9 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-    # @days = @booking.end_date - @booking.start_date
+    @days = (@booking.end_date.day - @booking.start_date.day).to_i
+    # @days = ((@booking.end_date - @booking.start_date) / 60 / 60 / 24).to_i
+    @booking_price = (@booking.car.price * @days).round(2)
   end
 
   private

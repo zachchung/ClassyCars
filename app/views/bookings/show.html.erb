@@ -16,19 +16,17 @@
 
   <div class="card m-2 p-3">
 
-    <p>Model: <%= @booking.car.name %>, <%= @booking.car.year %></p>
-    <p>Location: <%= @booking.car.location %></p>
-    <p>Dates: <%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
+    <p><strong> Model:</strong> <%= @booking.car.name %> (<%= @booking.car.seats %> seats)</p>
+    <p><strong> Model Year:</strong> <%= @booking.car.year %></p>
+    <p><strong>Location:</strong> <%= @booking.car.location %></p>
+    <p><strong>Dates:</strong> <%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
 
-    <p> $<%= @booking.car.price %> x <%#= @days %> days </p>
-    <p> Total price: $<%#= @booking_price %> </p>
+    <p> $<%= @booking.car.price %> x <%= @days %> days </p>
+    <p> <strong>Total price:</strong> $<%= @booking_price %> </p>
+    <p> <strong>Status:</strong> <%= @booking.status %> </p>
 
   </div>
 </div>
-
-
-
-
 
 
 
