@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between">
+  <div>
+    <h1>Confirmation</h1>
+    <p>
+      Congratulations!
+      <br><br>
+      You have booked a car in <%= @car %> for <%= @days %> days
+      <br><br>
+      TODO: insert car photo here
+      <br><br>
+      Booking reference: <%#= @booking.id %>
+    </p>
+
+    <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
+  </div>
+
+  <div class="card m-2 p-2">
+
+    <br>
+    <p>Your email: <%= @booking.car.user.email %></p>
+    <br>
+    <p><%= @booking.start_date %></p>
+    <p>Car Name: <%= @booking.car.name %></p>
+    <p>Car Location: <%= @booking.car.location %></p>
+    <p>Car Year: <%= @booking.car.year %></p>
+    <p>Car No.Seats: <%= @booking.car.seats %></p>
+<!--     <p><%= @booking.user_id %></p> -->
+
+  </div>
+</div>

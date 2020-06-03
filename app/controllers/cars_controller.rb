@@ -1,4 +1,5 @@
 class CarsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
 
   def new
     @car = Car.new
@@ -22,6 +23,14 @@ class CarsController < ApplicationController
 
   def index
     @cars = Car.all
+  end
+
+  def destroy
+    @car = Car.find(params[:id])
+    @car.destroy
+
+    # no need for app/views/restaurants/destroy.html.erb
+    redirect_to car_path
   end
 
   private
