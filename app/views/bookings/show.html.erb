@@ -20,15 +20,11 @@
     <p>Location: <%= @booking.car.location %></p>
     <p>Dates: <%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
 
-    <p> $<%= @booking.car.price %> x <%#= @days %> days </p>
-    <p> Total price: $<%#= @booking_price %> </p>
+    <p> $<%= @booking.car.price %> x <%= @days %> days </p>
+    <p> Total price: $<%= @booking_price %> </p>
 
   </div>
 </div>
-
-
-
-
 
 
 
