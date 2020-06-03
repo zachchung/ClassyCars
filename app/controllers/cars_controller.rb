@@ -31,7 +31,7 @@ class CarsController < ApplicationController
         lat: car.latitude,
         lng: car.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
-        image_url: helpers.asset_url('ferrari')
+        image_url: helpers.asset_url('ferrari.png')
       }
     end
   end
