@@ -6,9 +6,11 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.status = "pending"
+    # issues if booking dates are not valid, need to redirect_to show page again 
     if @booking.save
       redirect_to @booking
     else
+      # this render :new will render a new confirmation page
       render :new
     end
   end
