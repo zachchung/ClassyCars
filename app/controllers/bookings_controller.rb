@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    # @days = @booking.end_date - @booking.start_date
   end
 
   private

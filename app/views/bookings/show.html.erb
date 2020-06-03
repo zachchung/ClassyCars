@@ -2,29 +2,36 @@
   <div>
     <h1>Confirmation</h1>
     <p>
-      Congratulations!
+      Congratulations, <%= @booking.user.first_name %>!
       <br><br>
-      You have booked a car in <%= @car %> for <%= @days %> days
+      You have booked a car in <%= @booking.car.location %> for <%= @days %> days
       <br><br>
       TODO: insert car photo here
       <br><br>
-      Booking reference: <%#= @booking.id %>
+      Booking reference: <%= @booking.id %>
     </p>
 
     <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
   </div>
 
-  <div class="card m-2 p-2">
+  <div class="card m-2 p-3">
 
-    <br>
-    <p>Your email: <%= @booking.user.email %></p>
-    <br>
-    <p><%= @booking.start_date %></p>
-    <p>Car Name: <%= @booking.car.name %></p>
-    <p>Car Location: <%= @booking.car.location %></p>
-    <p>Car Year: <%= @booking.car.year %></p>
-    <p>Car No.Seats: <%= @booking.car.seats %></p>
-<!--     <p><%= @booking.user_id %></p> -->
+    <p>Model: <%= @booking.car.name %>, <%= @booking.car.year %></p>
+    <p>Location: <%= @booking.car.location %></p>
+    <p>Dates: <%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
+
+    <p> $<%= @booking.car.price %> x <%#= @days %> days </p>
+    <p> Total price: $<%#= @booking_price %> </p>
 
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
