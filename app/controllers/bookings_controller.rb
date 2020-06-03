@@ -2,7 +2,9 @@ class BookingsController < ApplicationController
 
   booking_status = %w[pending confirmed cancelled returned renting]
 
-  def new; end
+  def new
+    @booking = Booking.new
+  end
 
   def create
     @booking = Booking.new(booking_params)
@@ -11,8 +13,10 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to @booking
     else
-      # this render :new will render a new confirmation page
-      render :new
+      redirect_to car_path(@booking.car), alert: @booking.errors['dates'].first
+      # Keep this to check with TAs tomorrow
+      # redirect_to car_path(@booking.car), alert: @booking.errors['dates'].first, data: { data_booking: @booking, data_car: @booking.car  }
+      # render template: 'cars/show', data: @booking, alert: @booking.errors['dates'].first
     end
   end
 

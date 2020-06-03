@@ -40,27 +40,18 @@
   </a>
 </div>
 
+<% defined?(@car).nil? ? car = @booking.car : car = @car  %>
+
 <div class="shadow p-3 mb-5 bg-white rounded">
-<p> Your car details are as follows</p>
-<ul>
-<br>
-<li><p>Name: <%= @car.name %></p></li>
-<li><p>Location: <%= @car.location %></p></li>
-<li><p>Price/day: <%= @car.price %></p></li>
-<li><p>Number of seats: <%= @car.seats %></p></li>
-<li><p>Make year: <%= @car.year %></p></li>
-
-</ul>
+  <p> Your car details are as follows</p>
+  <ul>
+    <li><p>Name: <%= car.name %></p></li>
+    <li><p>Location: <%= car.location %></p></li>
+    <li><p>Price/day: <%= car.price %></p></li>
+    <li><p>Number of seats: <%= car.seats %></p></li>
+    <li><p>Make year: <%= car.year %></p></li>
+  </ul>
 </div>
 </div>
 
-
-<%= simple_form_for(@booking, method: :post, url: bookings_path) do |f| %>  
-  <%= f.input :start_date, as: :string, id: :start_date, required: false, input_html: { class: "datepicker", "data-unavailable-dates": @car.unavailable_dates.to_json } %>
-  <%= f.input :end_date, as: :string, id: :end_date, required: false, input_html: { class: "datepicker" } %>
-  <%= f.input :car_id, as: "hidden", input_html: { value: @car.id } %>
-  <%= f.input :user_id, as: "hidden", input_html: { value: current_user.id } %>
-  <%= f.submit 'Book Now', class: "btn btn-primary m-2"  %>
-<% end %>
-
-
+<%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>

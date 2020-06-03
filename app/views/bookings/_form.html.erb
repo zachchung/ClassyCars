@@ -1,0 +1,7 @@
+<%= simple_form_for [car, booking], method: :post, url: bookings_path do |f| %>  
+  <%= f.input :start_date, as: :string, id: :start_date, required: false, input_html: { class: "datepicker", "data-unavailable-dates": car.unavailable_dates.to_json } %>
+  <%= f.input :end_date, as: :string, id: :end_date, required: false, input_html: { class: "datepicker" } %>
+  <%= f.input :car_id, as: "hidden", input_html: { value: car.id } %>
+  <%= f.input :user_id, as: "hidden", input_html: { value: current_user.id } %>
+  <%= f.submit 'Book Now', class: "btn btn-primary m-2"  %>
+<% end %>
