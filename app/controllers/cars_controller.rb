@@ -41,8 +41,19 @@ class CarsController < ApplicationController
     @car.destroy
 
     # no need for app/views/restaurants/destroy.html.erb
-    redirect_to car_path
+    redirect_to listmycars_cars_path
   end
+
+  # def edit
+  #   @car = Car.find(params[:id])
+  #   @car.update(car_params)
+  #   # Will raise ActiveModel::ForbiddenAttributesError
+  # end
+
+  def listmycars
+    @cars = current_user.cars
+  end
+
 
   private
 

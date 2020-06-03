@@ -1,5 +1,7 @@
 <% unique_id = "carouselIndicators-#{car.id}" %>
 <% unique_href = "##{unique_id}" %>
+<% photo = ["https://images.unsplash.com/photo-1587750059638-e7e8c43b99fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80", "https://images.unsplash.com/photo-1508171997656-fdf7cf6c4df9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"] %>
+
 
 <div id=<%= unique_id %> class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -11,7 +13,7 @@
   <div class="carousel-inner rounded">
     <% 3.times do |time| %>
       <div class="carousel-item <%= "active" if time == 0 %>">
-        <img src="https://place-hold.it/300x300" class="d-block w-100" alt="cars photos">
+        <img src= <%= photo[time] %> class= "d-block w-100" alt="cars photos">
       </div>
     <% end %>
   </div>
