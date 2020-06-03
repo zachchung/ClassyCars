@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :bookings
 
   get "cars/search", to: "cars#search"
+  get "/users", to: redirect("/404")
 end
 
 
