@@ -2,7 +2,10 @@ class Car < ApplicationRecord
   belongs_to :user
   has_many :bookings
 
+  geocoded_by :location
+
   validates :name, :year, :seats, :price, :location, presence: true
+  after_validation :geocode, if: :will_save_change_to_location?
 
   def unavailable_dates
     # get an array of [start_date, end_date] then map into Hash object
