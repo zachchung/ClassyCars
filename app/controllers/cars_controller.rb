@@ -20,6 +20,8 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @booking = Booking.new
+  rescue ActiveRecord::RecordNotFound => e
+    redirect_to cars_path, alert: "Could not find the car you requested."
   end
 
   def index
@@ -38,10 +40,13 @@ class CarsController < ApplicationController
 
   def destroy
     @car = Car.find(params[:id])
-    @car.destroy
 
-    # no need for app/views/restaurants/destroy.html.erb
-    redirect_to listmycars_cars_path
+    if @car.bookings.count.zero?
+      @car.destroy
+      redirect_to listmycars_cars_path
+    else
+      redirect_to listmycars_cars_path, alert: "Car cannot be removed. There are still bookings for this car."
+    end
   end
 
   # def edit

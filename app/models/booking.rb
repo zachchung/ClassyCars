@@ -9,7 +9,7 @@ class Booking < ApplicationRecord
     if car.can_book_for?(start_date, end_date)
       return true
     else
-      errors.add(:dates, "dates are not available")
+      errors.add(:dates, "Selected dates are not available to book!")
       return false
     end
   end

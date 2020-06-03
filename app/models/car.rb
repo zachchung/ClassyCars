@@ -15,6 +15,6 @@ class Car < ApplicationRecord
   end
 
   def can_book_for?(start_date, end_date)
-    !bookings.exists?(['id = ? AND (start_date >= ? AND end_date <= ?)', id, start_date, end_date])
+    !bookings.exists?(['start_date >= ? AND end_date <= ?', start_date, end_date])
   end
 end
