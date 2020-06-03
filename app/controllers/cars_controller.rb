@@ -16,13 +16,22 @@ class CarsController < ApplicationController
       render :new
     end
   end
+
   def show
     @car = Car.find(params[:id])
     @booking = Booking.new
   end
 
   def index
-    @cars = Car.all
+    # @cars = Car.all
+    @cars = Car.geocoded # returns cars with coordinates
+
+    @markers = @cars.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude
+      }
+    end
   end
 
   def destroy

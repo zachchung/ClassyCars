@@ -34,6 +34,7 @@ gem 'simple_form'
 
 # Newly added:
 gem 'devise'
+gem 'geocoder'
 
 group :development, :test do
   gem 'faker'
