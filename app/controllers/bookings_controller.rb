@@ -1,19 +1,12 @@
 class BookingsController < ApplicationController
-  # confirm page:
-  def new
-    # GET FROM CARS#SHOW'S PARAMS
-    @car = Car.find(rand(1..10))
-    @start_date = DateTime.now
-    @end_date = DateTime.now + rand(1..7)
-    # END
 
-    @days = (@end_date - @start_date).to_i
-    @booking_price = (@car.price * @days).round(2)
-    # @booking = Booking.new
-  end
+  booking_status = %w[pending confirmed cancelled returned renting]
+
+  def new; end
 
   def create
     @booking = Booking.new(booking_params)
+    @booking.status = "pending"
     if @booking.save
       redirect_to @booking
     else
