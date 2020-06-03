@@ -12,9 +12,12 @@
       <strong> Location:</strong> <%= booking.car.location %>
       <br>
       <strong> Dates:</strong> <%= booking.start_date.strftime("%B %d, %Y") %> - <%= booking.end_date.strftime("%B %d, %Y") %>
+               (<%= (booking.end_date.day - booking.start_date.day).to_i %> days)
       <br>
       <strong> Itenerary # </strong>  <%= booking.id %>
       <br>
       <strong> Status: </strong>  <%= booking.status %>
     </p></div>
   <% end %>
+
+

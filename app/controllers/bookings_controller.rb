@@ -22,8 +22,9 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-
-    @days = ((@booking.end_date - @booking.start_date) / 60 / 60 / 24).to_i
+    @days = (@booking.end_date.day - @booking.start_date.day).to_i
+    # @days = ((@booking.end_date - @booking.start_date) / 60 / 60 / 24).to_i
+    @booking_price = (@booking.car.price * @days).round(2)
   end
 
   private
