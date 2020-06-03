@@ -40,7 +40,7 @@ puts "--- Generate Car"
 users = User.all
 10.times do
   car = Car.new(
-    name: "#{Faker::Vehicle.manufacture} #{Faker::Vehicle.make_and_model}",
+    name: "#{Faker::Vehicle.make_and_model}",
     year: rand(1900..1980),
     seats: rand(2..6),
     price: rand(50..100) + rand.floor(2),
