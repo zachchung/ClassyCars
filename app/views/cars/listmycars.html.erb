@@ -7,6 +7,7 @@
       <h6 class="card-subtitle mb-2 font-weight-bold">AUD <%= car.price %></h6>
       <h6 class="card-subtitle mb-2 text-muted"><%= car.location %></h6>
     </div>
+    <%= link_to "Edit #{car.name}", edit_car_path(car), class: "btn btn-danger m-2" %>
     <%= link_to "Delete", car_path(car), method: :delete, data: { confirm: "Are you sure?" }, 
                 class: "card-link text-danger" %>
   </div>
@@ -16,7 +17,6 @@
   <div class="card-footer">
   </div>
 </div>
-
 
 <% end %>
 <%= link_to "Add New", new_car_path, class: "btn btn-primary m-2" %> |

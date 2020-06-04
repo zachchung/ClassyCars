@@ -37,6 +37,11 @@ class CarsController < ApplicationController
         image_url: helpers.asset_url('ferrari.png')
       }
     end
+    if params[:query].present?
+      @cars = Car.where("location ILIKE ?", "%#{params[:query]}%")
+    else
+      @cars = Car.all
+    end
   end
 
   def destroy
@@ -50,11 +55,17 @@ class CarsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @car = Car.find(params[:id])
-  #   @car.update(car_params)
-  #   # Will raise ActiveModel::ForbiddenAttributesError
-  # end
+  def edit
+    @car = Car.find(params[:id])
+
+    # Will raise ActiveModel::ForbiddenAttributesError
+  end
+
+  def update
+    @car = Car.find(params[:id])
+    @car.update(car_params)
+    redirect_to listmycars_cars_path
+  end
 
   def listmycars
     @cars = current_user.cars
@@ -64,6 +75,6 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:name, :location, :seats, :year, :price)
+    params.require(:car).permit(:name, :location, :seats, :year, :price, photos: [])
   end
 end
