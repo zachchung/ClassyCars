@@ -1,11 +1,6 @@
 class BookingsController < ApplicationController
   before_action :booking_set, only: [:show, :modify]
-<<<<<<< HEAD
-  before_action :belongs_to_user?, only: [:show, :modify]
 
-=======
-
->>>>>>> master
   def new
     @booking = Booking.new
   end
