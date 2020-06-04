@@ -4,6 +4,7 @@
 <p>Car Name: <%= car.name %></p>
 <p>Car Price: <%= car.price %></p>
 <p>Car Location: <%= car.location %></p>
+<%= link_to "Edit #{car.name}", edit_car_path(car), class: "btn btn-danger m-2" %>
 <%= link_to "Delete #{car.name}", car_path(car), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger m-2" %>
 </div>
 <% end %>
