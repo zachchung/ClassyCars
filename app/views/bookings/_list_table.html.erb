@@ -4,49 +4,26 @@
 
 <% unless bookings.count.zero? %>
 <%# Hide if on mobile, show if tablet or computer %>
-<table class="table w-100 d-none d-sm-block d-print-table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>From</th>
-      <th>Return by</th>
-      <th>Cost</th>
-      <th>Status</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-      <% bookings.reverse.each do |booking| %>
-      <tr>
-        <td><%= booking.user.fullname %></td>
-        <td><%= booking.start_date %></td>
-        <td><%= booking.end_date %></td>
-        <td><%= booking.booking_price %></td>
-        <td><%= booking.status %></td>
-        <td><%= link_to "View", booking_path(booking), class: "card-link text-primary" %></td>
-        <td><%= link_to "Approve", modify_booking_path(booking, my_action: "approve"), method: :patch, class: "card-link text-success" %></td>
-        <td><%= link_to "Decline", modify_booking_path(booking, my_action: "decline"), method: :patch, class: "card-link text-warning" %></td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>
-
-  <%# Show if on mobile, hide if tablet or computer %>
+<div class="row">
   <% bookings.reverse.each do |booking| %>
-  <div class="card d-block d-sm-none d-print-none">
-    <div class="card-body">
-      <p class="card-text"><%= booking.user.fullname %></p>
-      <p class="card-text"><%= formatted_date(booking.start_date) %> to <%= formatted_date(booking.end_date) %></p>
-      <p class="card-text"><%= booking.booking_price %></p>
-      <p class="card-text"><%= booking.status %></p>
+  <div class="col-12 col-md-6 col-lg-4 mb-3">
+  <div class="card p-3">
+    <div class="card-body px-0">
+      <h4 class="card-title"><%= booking.user.fullname %></h4>
+      <%= link_to "View booking", booking_path(booking), class: "text-link" %>
+      <div class="card-text mt-2 mb-1"><%= formatted_date(booking.start_date) %></div>
+      <div class="card-text mb-1"><%= formatted_date(booking.end_date) %></div>
+      <div class="card-text mb-1">AUD <%= booking.booking_price %></div>
+      <div class="card-text text-muted mb-1"><%= booking.status %></div>
     </div>
-    <div class="card-footer">
-      <%= link_to "View", booking_path(booking), class: "card-link text-primary" %> |
-      <%= link_to "Approve", modify_booking_path(booking, my_action: "approve"), method: :patch, class: "card-link text-success" %> |
-      <%= link_to "Decline", modify_booking_path(booking, my_action: "decline"), method: :patch, class: "card-link text-warning" %>
+    <div class="d-flex justify-content-between">
+      <%= link_to "Approve", modify_booking_path(booking, my_action: "approve"), method: :patch, class: "w-100 mr-2 btn btn-lg text-white btn-primary" %>
+      <%= link_to "Decline", modify_booking_path(booking, my_action: "decline"), method: :patch, class: "w-100 btn btn-lg btn-outline-dark" %>
     </div>
   </div>
+  </div>
   <% end %>
+</div>
 <% else %>
-  <tr><span class="text-muted">No booking found!</span></tr>
+  <span class="text-muted">No booking found!</span>
 <% end %>

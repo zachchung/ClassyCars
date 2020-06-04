@@ -8,7 +8,8 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.status = "pending"
-    
+    @booking.booking_price = (@booking.car.price * @booking.duration).round(2)
+
     if @booking.save
       redirect_to @booking
     else
@@ -22,9 +23,6 @@ class BookingsController < ApplicationController
 
   def show
     redirect_to bookings_path, notice: "Booking is not found." unless belongs_to_user?
-
-    @days = (@booking.end_date.day - @booking.start_date.day).to_i
-    @booking_price = (@booking.car.price * @days).round(2)
   end
 
   def modify

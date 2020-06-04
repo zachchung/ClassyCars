@@ -1,10 +1,9 @@
 <% unique_id = "carouselIndicators-#{car.id}" %>
 <% unique_href = "##{unique_id}" %>
 
-
-<% first_image = car.photos[0] ? cl_image_path(car.photos[0].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
-<% second_image = car.photos[1] ? cl_image_path(car.photos[1].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
-<% third_image = car.photos[2] ? cl_image_path(car.photos[2].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
+<% first_image = car.photos[0] ? cl_image_path(car.photos[0].key) : "http://loremflickr.com/800/500/automobile?random=#{(rand(1..0))}" %>
+<% second_image = car.photos[1] ? cl_image_path(car.photos[1].key) : "http://loremflickr.com/800/500/automobile?random=#{(rand(1..0))}" %>
+<% third_image = car.photos[2] ? cl_image_path(car.photos[2].key) : "http://loremflickr.com/800/500/automobile?random=#{(rand(1..0))}" %>
 <% photo = [first_image, second_image, third_image] %>
 <%#= raise %>
 
