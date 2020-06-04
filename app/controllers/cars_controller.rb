@@ -50,11 +50,17 @@ class CarsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @car = Car.find(params[:id])
-  #   @car.update(car_params)
-  #   # Will raise ActiveModel::ForbiddenAttributesError
-  # end
+  def edit
+    @car = Car.find(params[:id])
+
+    # Will raise ActiveModel::ForbiddenAttributesError
+  end
+
+  def update
+    @car = Car.find(params[:id])
+    @car.update(car_params)
+    redirect_to listmycars_cars_path
+  end
 
   def listmycars
     @cars = current_user.cars
