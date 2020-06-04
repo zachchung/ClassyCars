@@ -40,7 +40,6 @@ puts "Finished generated User ---"
 puts "--- Generate Car"
 users = User.all
 
-
 car = Car.create!(
   name: "Le Wagon",
   year: 2013,
@@ -63,7 +62,6 @@ car = Car.create!(
   price: rand(50..100) + rand.floor(2),
   location: "#{suburbs.sample}, VIC",
   user_id: users.sample.id,
-  # image: "batmobile.jpg"
   )
 file1 = URI.open('https://postmediadriving.files.wordpress.com/2018/02/tumbler-batmobile-replica.jpg')
 file2 = URI.open('https://rocketeers.gg/wp-content/uploads/2018/02/batmobile-89.jpg')
@@ -71,8 +69,6 @@ file3 = URI.open('https://cdn.i-scmp.com/sites/default/files/d8/images/methode/2
 car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file2, filename: 'car2.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
-# car.user = users.sample
-# car.save!
 
 car = Car.create!(
   name: "Mario Kart",
@@ -111,10 +107,8 @@ car = Car.create!(
   user_id: users.sample.id,
   )
 file1 = URI.open('https://i.insider.com/5dd85153fd9db24cee2399db?width=1065&format=jpeg')
-# file2 = URI.open('https://www.tesla.com/xNVh4yUEc3B9/10_Desktop.jpg')
 file3 = URI.open('https://cdn.motor1.com/images/mgl/jyq8l/s1/tesla-cybertruck-colors.jpg')
 car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
-# car.photos.attach(io: file2, filename: 'car2.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
 
 
