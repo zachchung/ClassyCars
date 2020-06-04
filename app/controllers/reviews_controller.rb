@@ -15,9 +15,13 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def show_reviews
-    @reviews = Reviews.all
+  def destroy
+    @review = Review.find(params[:id])
+    user_car = current_user.car_ids
+    @review.destroy
+    end
   end
+
   private
 
   def review_params
