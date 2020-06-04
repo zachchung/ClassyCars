@@ -1,12 +1,23 @@
-<h1>Your cars</h1>
+<h1 class="my-3">Your cars</h1>
 <% @cars.each do |car| %>
-<div class = "shadow p-3 mb-5 bg-white rounded">
-<p>Car Name: <%= car.name %></p>
-<p>Car Price: <%= car.price %></p>
-<p>Car Location: <%= car.location %></p>
-<%= link_to "Edit #{car.name}", edit_car_path(car), class: "btn btn-danger m-2" %>
-<%= link_to "Delete #{car.name}", car_path(car), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger m-2" %>
+<div class="card w-100">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h3><%= car.name %></h3>
+      <h6 class="card-subtitle mb-2 font-weight-bold">AUD <%= car.price %></h6>
+      <h6 class="card-subtitle mb-2 text-muted"><%= car.location %></h6>
+    </div>
+    <%= link_to "Edit #{car.name}", edit_car_path(car), class: "btn btn-danger m-2" %>
+    <%= link_to "Delete", car_path(car), method: :delete, data: { confirm: "Are you sure?" }, 
+                class: "card-link text-danger" %>
+  </div>
+  <div class="card-body table-responsive">
+    <%= render partial: "bookings/list_table", locals: {bookings: car.bookings} %>
+  </div>
+  <div class="card-footer">
+  </div>
 </div>
+
 <% end %>
-<%= link_to "Add New", new_car_path, class: "btn btn-primary m-2" %>
+<%= link_to "Add New", new_car_path, class: "btn btn-primary m-2" %> |
 <%= link_to "Home", root_path, class: "btn btn-primary m-2" %>
