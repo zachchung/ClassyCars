@@ -59,6 +59,10 @@ class CarsController < ApplicationController
     @cars = current_user.cars
   end
 
+  def show_reviews
+    @reviews = Reviews.all
+  end
+
 
   private
 

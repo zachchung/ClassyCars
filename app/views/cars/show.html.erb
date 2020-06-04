@@ -53,5 +53,10 @@
   </ul>
 </div>
 </div>
+<div>
+  <% @reviews.each do |review| %>
+    <%= review.description %>
+    <% end %>
+</div>
 
 <%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>
