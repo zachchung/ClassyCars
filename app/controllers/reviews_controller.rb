@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @review.booking = @booking
     if @review.save
-      redirect_to bookings_path(@booking)
+      redirect_to car_path(@review.booking.car)
     else
       render :new
     end
@@ -18,7 +18,10 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     user_car = current_user.car_ids
-    @review.destroy
+    if @review.destroy
+      redirect_to car_path(@review.booking.car)
+    else
+      redirect_to car_path(@review.booking.car), alert: "You cannot delete reviews unless its your car"
     end
   end
 
