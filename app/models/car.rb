@@ -19,4 +19,7 @@ class Car < ApplicationRecord
   def can_book_for?(start_date, end_date)
     !bookings.exists?(['start_date >= ? AND end_date <= ?', start_date, end_date])
   end
+
+  # include PgSearch::Model
+  # multisearchable against: [:location]
 end

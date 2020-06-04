@@ -1,8 +1,43 @@
-
-<div>
+<!--
+<div class="align-middle">
 <%= link_to "Book a car", cars_path, class: "btn btn-primary m-2" %>
 <%= link_to "Add car", new_car_path, class: "btn btn-primary m-2" %>
 <%= link_to "My cars", listmycars_cars_path, class: "btn btn-primary m-2" %>
 <%= link_to "My bookings", bookings_path, class: "btn btn-primary m-2" %>
+</div> -->
+<div class = "container p-5">
+<div class = "card mb-5 p-5 b-rad">
+  <h1><b>BOOK YOUR NEXT ADVENTURE WITH US</b></h1>
 </div>
+<%= form_tag cars_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Enter Location" %>
+  <%= submit_tag "Search", class: "btn btn-warning" %>
+<% end %>
+</div>
+<!-- <div class="card border-dark mb-3 float-right mr-5 pr-5 mt-5" style="max-width: 25rem;">
+  <div class="card-header">
+    <h4>Book Your Classic</h4>
+  </div>
+  <div class="card-body text-dark">
+    <h5 class="card-title">Dark card title</h5> -->
+    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+  <!-- <form action="/cars/index.html" class = "floating_form">
+    <h1>Search Now</h1>
+
+    <label for="text" class = "mr-3 mb-3"><b>Location</b></label>
+    <input type="text" class = "float-right mr-1 pr-1" placeholder="Melbourne, VIC 3000" name="location" required>
+
+    <label for="date" class = "mr-3 mb-3"><b>Start Date</b></label>
+    <input type="date" class = "float-right mr-1 pr-1" placeholder="25/06/2020" name="start_date" required>
+
+    <label for="date" class = "mr-3 mb-3"><b>End Date</b></label>
+    <input type="date" class = "float-right mr-1 pr-1" placeholder="27/06/2020" name="end_date" required>
+
+    <button type="submit" class="click">Login</button>
+  </form>
+  </div>
+</div> -->
 

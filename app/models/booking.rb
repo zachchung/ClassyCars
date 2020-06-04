@@ -14,4 +14,7 @@ class Booking < ApplicationRecord
       return false
     end
   end
+
+  # include PgSearch::Model
+  # multisearchable against: [:start_date, :end_date]
 end
