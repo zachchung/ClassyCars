@@ -36,6 +36,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'geocoder'
 gem 'faker'
+gem 'cloudinary', '~> 1.12.0'
 
 group :development, :test do
   gem 'dotenv-rails'

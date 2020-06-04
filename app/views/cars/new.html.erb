@@ -4,6 +4,7 @@
   <%= f.input :price %>
   <%= f.input :seats %>
   <%= f.input :year %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit 'Add Car', class: "btn btn-primary m-2"  %>
 <% end %>
 
