@@ -9,16 +9,8 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-
-      <%# if @car.image %>
-        <%#= image_tag @car.image, class: "figure-img img-fluid rounded" %>
-      <%# else %>
-        <!-- <img src="https://images.unsplash.com/photo-1508171997656-fdf7cf6c4df9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d.d-none-block w-100" alt="..."> -->
-      <%# end %>
       <% first_image = @car.photos[0] ? cl_image_path(@car.photos[0].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
       <img src=<%= first_image %> class="d.d-none-block w-100" alt="...">
-<%#= raise %>
-
       <div class="carousel-caption d-none d-md-block">
         <h5>Fast</h5>
         <p></p>
@@ -27,7 +19,6 @@
     <div class="carousel-item">
       <% second_image = @car.photos[1] ? cl_image_path(@car.photos[1].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
       <img src=<%= second_image %> class="d.d-none-block w-100" alt="...">
-      <!-- <img src="https://images.unsplash.com/photo-1508171997656-fdf7cf6c4df9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d.d-none-block w-100" alt="..."> -->
       <div class="carousel-caption d-none d-md-block">
         <h5>Classy</h5>
         <p></p>
@@ -36,8 +27,6 @@
     <div class="carousel-item">
       <% second_image = @car.photos[2] ? cl_image_path(@car.photos[2].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
       <img src=<%= second_image %> class="d.d-none-block w-100" alt="...">
-
-      <!-- <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="..."> -->
       <div class="carousel-caption d-none d-md-block">
         <h5>Cool</h5>
         <p></p>
