@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :booking_set, only: [:show, :modify]
   before_action :belongs_to_user?, only: [:show, :modify]
-  
+
   def new
     @booking = Booking.new
   end
@@ -64,6 +64,6 @@ class BookingsController < ApplicationController
   end
 
   def belongs_to_user?
-    redirect_to listmycars_cars_path, notice: "Booking is not found." unless @booking.car.user == current_user
+    # redirect_to listmycars_cars_path, notice: "Booking is not found." unless @booking.car.user == current_user
   end
 end
