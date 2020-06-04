@@ -9,24 +9,38 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://images.unsplash.com/photo-1587750059638-e7e8c43b99fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" class="figure-img img-fluid rounded" alt="...">
+
+      <%# if @car.image %>
+        <%#= image_tag @car.image, class: "figure-img img-fluid rounded" %>
+      <%# else %>
+        <!-- <img src="https://images.unsplash.com/photo-1508171997656-fdf7cf6c4df9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d.d-none-block w-100" alt="..."> -->
+      <%# end %>
+      <% first_image = @car.photos[0] ? cl_image_path(@car.photos[0].key) : "https://images.unsplash.com/photo-1587750059638-e7e8c43b99fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" %>
+      <img src=<%= first_image %> class="d.d-none-block w-100" alt="...">
+<%#= raise %>
+
       <div class="carousel-caption d-none d-md-block">
-        <h5>Photo 1</h5>
-        <p>Super Car</p>
+        <h5>Fast</h5>
+        <p></p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://images.unsplash.com/photo-1508171997656-fdf7cf6c4df9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d.d-none-block w-100" alt="...">
+      <% second_image = @car.photos[1] ? cl_image_path(@car.photos[1].key) : "https://images.unsplash.com/photo-1508171997656-fdf7cf6c4df9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" %>
+      <img src=<%= second_image %> class="d.d-none-block w-100" alt="...">
+      <!-- <img src="https://images.unsplash.com/photo-1508171997656-fdf7cf6c4df9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d.d-none-block w-100" alt="..."> -->
       <div class="carousel-caption d-none d-md-block">
-        <h5>Photo 2</h5>
-        <p>The ever green</p>
+        <h5>Classy</h5>
+        <p></p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="...">
+      <% second_image = @car.photos[2] ? cl_image_path(@car.photos[2].key) : "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" %>
+      <img src=<%= second_image %> class="d.d-none-block w-100" alt="...">
+
+      <!-- <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="..."> -->
       <div class="carousel-caption d-none d-md-block">
-        <h5>Photo 3</h5>
-        <p>Red Devil</p>
+        <h5>Cool</h5>
+        <p></p>
       </div>
     </div>
   </div>
