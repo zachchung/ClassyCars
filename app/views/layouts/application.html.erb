@@ -14,9 +14,14 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <div class="container">
+    <% if current_page? root_path %>
+      <div class='banner'>
+    <% else %>
+      <div class="container">
+    <% end %>
       <%= yield %>
       <%= render 'shared/flashes' %>
+
     </div>
   </body>
 </html>

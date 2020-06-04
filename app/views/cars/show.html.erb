@@ -54,4 +54,23 @@
 </div>
 </div>
 
+<div>
+  <h3>Reviews</h3>
+  <div>
+  <% if @reviews.size != 0 %>
+  <% @reviews.each do |review| %>
+  <ul class="shadow p-1 mb-1 bg-white rounded" style = "list-style-type: none;">
+    <li><p> Description: <%= review.description %></li>
+    <li><p> Rating: <%= review.rating %></p></li>
+    <% if current_user.car_ids.include? review.booking.car.id %>
+      <li><%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger m-2" %></li>
+    <% end %>
+  </ul>
+    <% end %>
+<% else %>
+  <h4>No reviews so far</h4>
+<% end %>
+</div>
+
+<h3 class= "mt-5">Book Now</h3>
 <%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>

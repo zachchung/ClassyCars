@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   resources :cars do
     get :listmycars, on: :collection
 
-    resources :reviews, only: [:new, :create]
+
   end
   resources :reviews, only: :destroy
-  resources :bookings
+  resources :bookings do
+    resources :reviews, only: [:new, :create]
+  end
 
   get "cars/search", to: "cars#search"
   get "/users", to: redirect("/404")
@@ -37,6 +39,6 @@ end
 # PUT    /bookings/:id     bookings#update
 # DELETE /bookings/:id      bookings#destroy
 
-# POST   /cars/:car_id/reviews     reviews#create
-# GET    /cars/:car_id/reviews/new reviews#new
+# POST   /booking/:booking_id/reviews     reviews#create
+# GET    /bookings/:booking_id/reviews/new reviews#new
 # DELETE /reviews/:id           reviews#destroy
