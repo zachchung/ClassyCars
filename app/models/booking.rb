@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :car
   belongs_to :user
+  has_one :review
 
   validates :start_date, :end_date, presence: true
   validate :date_available?

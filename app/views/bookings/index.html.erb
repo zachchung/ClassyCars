@@ -17,6 +17,7 @@
       <strong> Itenerary # </strong>  <%= booking.id %>
       <br>
       <strong> Status: </strong>  <%= booking.status %>
+      <%= link_to "Add Review", new_booking_review_path(booking), class: "btn btn-primary m-2" %>
     </p></div>
   <% end %>
 

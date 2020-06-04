@@ -20,6 +20,7 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @booking = Booking.new
+    @reviews = @car.reviews
   rescue ActiveRecord::RecordNotFound => e
     redirect_to cars_path, alert: "Could not find the car you requested."
   end
