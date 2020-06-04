@@ -36,7 +36,7 @@ third_user.save!
 puts "Finished generated User ---"
 
 
-# Sample Cars
+# Classy Cars
 puts "--- Generate Car"
 users = User.all
 
@@ -46,7 +46,7 @@ car = Car.create!(
   year: 2013,
   seats: 11,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, AU",
+  location: "#{suburbs.sample}, VIC",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://vistapointe.net/images/vw-minibus-1.jpg')
@@ -61,7 +61,7 @@ car = Car.create!(
   year: 2046,
   seats: 1,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, AU",
+  location: "#{suburbs.sample}, VIC",
   user_id: users.sample.id,
   # image: "batmobile.jpg"
   )
@@ -79,7 +79,7 @@ car = Car.create!(
   year: 1990,
   seats: 1,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, AU",
+  location: "#{suburbs.sample}, VIC",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://cdn.vox-cdn.com/thumbor/WXaYJI47OmpEBPs2490y3OVQ6OM=/0x0:1920x1158/1200x800/filters:focal(612x320:918x626)/cdn.vox-cdn.com/uploads/chorus_image/image/63881293/WiiU_MK8_artwork_07__1_.0.jpg')
@@ -94,7 +94,7 @@ car = Car.create!(
   year: 2020,
   seats: 2,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, AU",
+  location: "#{suburbs.sample}, VIC",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://image.cnbcfm.com/api/v1/image/106010244-1562708838619bencon-1.jpg?v=1562708869')
@@ -107,7 +107,7 @@ car = Car.create!(
   year: 2022,
   seats: 6,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, AU",
+  location: "#{suburbs.sample}, VIC",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://i.insider.com/5dd85153fd9db24cee2399db?width=1065&format=jpeg')
@@ -118,6 +118,7 @@ car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
 
 
+# # Template for new cars:
 # car = Car.create!(
 #   name: "",
 #   year: 1990,
@@ -134,6 +135,7 @@ car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
 # car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
 
 
+# Sample Cars
 10.times do
   car = Car.new(
     name: "#{Faker::Vehicle.make_and_model}",

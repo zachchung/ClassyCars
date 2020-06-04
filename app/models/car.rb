@@ -4,7 +4,6 @@ class Car < ApplicationRecord
   has_many :reviews, through: :bookings
   has_many_attached :photos
 
-
   geocoded_by :location
 
   validates :name, :year, :seats, :price, :location, presence: true
