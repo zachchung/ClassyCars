@@ -1,6 +1,5 @@
 class BookingsController < ApplicationController
   before_action :booking_set, only: [:show, :modify]
-  before_action :belongs_to_user?, only: [:show, :modify]
   
   def new
     @booking = Booking.new
@@ -9,7 +8,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.status = "pending"
-    # issues if booking dates are not valid, need to redirect_to show page again
+    
     if @booking.save
       redirect_to @booking
     else
@@ -22,11 +21,15 @@ class BookingsController < ApplicationController
   end
 
   def show
+    redirect_to bookings_path, notice: "Booking is not found." unless belongs_to_user?
+
     @days = (@booking.end_date.day - @booking.start_date.day).to_i
     @booking_price = (@booking.car.price * @days).round(2)
   end
 
   def modify
+    redirect_to listmycars_cars_path, notice: "Booking is not found." unless belongs_to_user?
+
     case params[:my_action]
     when "approve" then approve_booking(@booking)
     when "decline" then decline_booking(@booking)
@@ -64,6 +67,6 @@ class BookingsController < ApplicationController
   end
 
   def belongs_to_user?
-    redirect_to listmycars_cars_path, notice: "Booking is not found." unless @booking.car.user == current_user
+    @booking.car.user == current_user || current_user.booking_ids.include?(@booking.id)
   end
 end
