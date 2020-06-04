@@ -1,0 +1,52 @@
+<%# This partial will contain list of bookings in table format %>
+<%# Input: bookings %>
+<%# Out: a table of bookings WITHOUT table header %>
+
+<% unless bookings.count.zero? %>
+<%# Hide if on mobile, show if tablet or computer %>
+<table class="table w-100 d-none d-sm-block d-print-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>From</th>
+      <th>Return by</th>
+      <th>Cost</th>
+      <th>Status</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% bookings.reverse.each do |booking| %>
+      <tr>
+        <td><%= booking.user.fullname %></td>
+        <td><%= booking.start_date %></td>
+        <td><%= booking.end_date %></td>
+        <td><%= booking.booking_price %></td>
+        <td><%= booking.status %></td>
+        <td><%= link_to "View", booking_path(booking), class: "card-link text-primary" %></td>
+        <td><%= link_to "Approve", modify_booking_path(booking, my_action: "approve"), method: :patch, class: "card-link text-success" %></td>
+        <td><%= link_to "Decline", modify_booking_path(booking, my_action: "decline"), method: :patch, class: "card-link text-warning" %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+
+  <%# Show if on mobile, hide if tablet or computer %>
+  <% bookings.reverse.each do |booking| %>
+  <div class="card d-block d-sm-none d-print-none">
+    <div class="card-body">
+      <p class="card-text"><%= booking.user.fullname %></p>
+      <p class="card-text"><%= formatted_date(booking.start_date) %> to <%= formatted_date(booking.end_date) %></p>
+      <p class="card-text"><%= booking.booking_price %></p>
+      <p class="card-text"><%= booking.status %></p>
+    </div>
+    <div class="card-footer">
+      <%= link_to "View", booking_path(booking), class: "card-link text-primary" %> |
+      <%= link_to "Approve", modify_booking_path(booking, my_action: "approve"), method: :patch, class: "card-link text-success" %> |
+      <%= link_to "Decline", modify_booking_path(booking, my_action: "decline"), method: :patch, class: "card-link text-warning" %>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+  <tr><span class="text-muted">No booking found!</span></tr>
+<% end %>

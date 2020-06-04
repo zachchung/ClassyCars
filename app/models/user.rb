@@ -5,6 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :cars
+  has_many :bookings
 
   validates :first_name, :last_name, presence: true
+
+  def fullname
+    name = "#{first_name} #{last_name}"
+    name.strip
+  end
 end

@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
   resources :reviews, only: :destroy
-  resources :bookings
+  resources :bookings, except: [:destroy]
+  patch '/booking/:id', to: 'bookings#modify', as: :modify_booking
 
   get "cars/search", to: "cars#search"
   get "/users", to: redirect("/404")
