@@ -21,6 +21,13 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
     @booking = Booking.new
     @reviews = @car.reviews
+    @markers = [{
+    lat: @car.latitude,
+    lng: @car.longitude,
+    infoWindow: render_to_string(partial: "info_window", locals: { car: @car }),
+    image_url: helpers.asset_url('ferrari.png')
+    }]
+
   rescue ActiveRecord::RecordNotFound => e
     redirect_to cars_path, alert: "Could not find the car you requested."
   end
