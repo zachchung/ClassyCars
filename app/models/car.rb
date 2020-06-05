@@ -31,6 +31,18 @@ class Car < ApplicationRecord
     my_reviews.reduce(0) { |sum, review| sum + review.rating }.fdiv(my_reviews.count).ceil(2)
   end
 
+  def pending_bookings
+    bookings.where(status: Booking::BOOKING_STATUS[:pending])
+  end
+
+  def declined_bookings
+    bookings.where(status: Booking::BOOKING_STATUS[:declined])
+  end
+
+  def approved_bookings
+    bookings.where(status: Booking::BOOKING_STATUS[:approved])
+  end
+
   # include PgSearch::Model
   # multisearchable against: [:location]
 end

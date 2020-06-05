@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def formatted_date(day)
-    "#{day_of_week(day)}, #{day}"
+    "#{day_of_week(day)}, #{day.strftime("%b %d, %Y")}"
   end
 
   def rating_as_stars(rating)

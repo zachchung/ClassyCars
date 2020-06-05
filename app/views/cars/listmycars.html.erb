@@ -2,6 +2,7 @@
   <h1 class="my-3">My cars</h1>
   <%= link_to "Add car", new_car_path, class: "btn btn-lg btn-primary" %>
 </div>
+
 <% @cars.each do |car| %>
 <div class="card w-100 mb-4">
   <div class="card-header d-flex justify-content-between flex-column flex-md-row">
@@ -18,9 +19,7 @@
     </div>
   </div>
   <div class="card-body table-responsive">
-    <%= render partial: "bookings/list_table", locals: {bookings: car.bookings} %>
+    <%= render partial: "bookings/pending_bookings", locals: {bookings: car.pending_bookings} %>
   </div>
-
 </div>
-
 <% end %>
