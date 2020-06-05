@@ -43,11 +43,6 @@ const initMapbox = () => {
     
     if (Object.keys(markers).length > 0) {
       addMarkersToMap(map, markers);
-      map.flyTo({
-        center: [markers[0].lng, markers[0].lat],
-        zoom: 13,
-        maxZoom: 15,
-      });
       fitMapToMarkers(map, markers);
     }
   }
