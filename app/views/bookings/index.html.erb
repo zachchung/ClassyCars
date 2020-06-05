@@ -1,7 +1,7 @@
 <h1>My upcoming classy rentals</h1>
 
   <% @bookings.each do |booking| %>
-    <% if booking.status == "cancelled" %>
+    <% if booking.status == "cancelled" || booking.status == "declined" %>
       <div class="card p-2 mb-2" style="background-color: #FBC5B1">
     <% else %>
       <div class="card p-2 mb-2" style="background-color: #DDF3CE">
