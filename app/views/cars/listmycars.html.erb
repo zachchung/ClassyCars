@@ -6,14 +6,14 @@
 <div class="card w-100 mb-4">
   <div class="card-header d-flex justify-content-between flex-column flex-md-row">
     <div class="flex-grow-1 py-2">
-      <h2 class="mb-2"><%= car.name %></h2>
+      <h2 class="mb-2"><%= link_to car.name, car_path(car) %></h2>
       <h6 class="mb-2 card-subtitle font-weight-bold">AUD <%= car.price %></h6>
       <h6 class="mb-2 card-subtitle text-muted"><%= car.location %></h6>
       <h6 class="mb-2"><%= rating_as_stars(car.average_rating) %> (<%= car.average_rating %>)</h6>
     </div>
     <div class="d-flex flex-row align-items-center">
       <%= link_to "Edit", edit_car_path(car), class: "card-link text-primary" %>
-      <%= link_to "Delete", car_path(car), method: :delete, data: { confirm: "Are you sure?" }, 
+      <%= link_to "Delete", car_path(car), method: :delete, data: { confirm: "Are you sure?" },
                   class: "card-link text-muted" %>
     </div>
   </div>
