@@ -1,24 +1,12 @@
-<h1>My upcoming classy rentals</h1>
-
-  <% @bookings.each do |booking| %>
-    <% if booking.status == "cancelled" || booking.status == "declined" %>
-      <div class="card p-2 mb-2" style="background-color: #FBC5B1">
-    <% else %>
-      <div class="card p-2 mb-2" style="background-color: #DDF3CE">
+<div class="d-flex justify-content-between align-items-center py-5 px-3">
+  <h1 class="my-3">My upcoming bookings</h1>
+</div>
+<% unless @bookings.count.zero? %>
+  <div class="row">
+    <% @bookings.each do |booking| %>
+    <%= render partial: "bookings/card_booking", locals: {booking: booking} %>
     <% end %>
-    <p>
-      <strong> Classy Model:</strong> <%= link_to booking.car.name, booking_path(booking) %>
-      <br>
-      <strong> Location:</strong> <%= booking.car.location %>
-      <br>
-      <strong> Dates:</strong> <%= booking.start_date.strftime("%B %d, %Y") %> - <%= booking.end_date.strftime("%B %d, %Y") %>
-               (<%= booking.duration %> days)
-      <br>
-      <strong> Itenerary # </strong>  <%= booking.id %>
-      <br>
-      <strong> Status: </strong>  <%= booking.status %>
-      <%= link_to "Add Review", new_booking_review_path(booking), class: "btn btn-primary m-2" %>
-    </p></div>
-  <% end %>
-
-
+  </div>
+<% else %>
+  <span class="text-muted">No booking found!</span>
+<% end %>

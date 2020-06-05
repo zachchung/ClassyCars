@@ -1,0 +1,23 @@
+  <% status = ['cancelled','declined'] %>
+  <% color = status.include?(booking.status) ? "bg-muted text-muted" : "bg-white"  %>
+  <% show_review = booking.review || status.include?(booking.status) %>
+  
+  <div class="col-12 col-md-6 col-lg-4 mb-3">
+  <div class="card p-3 <%= color %>">
+    <div class="card-body px-0">
+      <h4 class="card-title">
+        <%= link_to booking.car.name, booking_path(booking), class: color %>
+      </h4>
+      <div class="card-text text-muted mb-1">
+        <% rating = booking.review ? booking.review.rating : 0 %>
+        <%= rating_as_stars(rating) %>
+        <%= link_to "Write a review", new_booking_review_path(booking), class: "text-muted" unless show_review %>
+        
+      </div>
+      <div class="card-text mt-2 mb-1"><%= formatted_date(booking.start_date) %></div>
+      <div class="card-text mb-1"><%= formatted_date(booking.end_date) %></div>
+      <div class="card-text mb-1">AUD <%= booking.booking_price %></div>
+      <div class="card-text text-muted mb-1"><%= booking.status %></div>
+    </div>
+  </div>
+  </div>
