@@ -2,11 +2,16 @@ class Car < ApplicationRecord
   belongs_to :user
   has_many :bookings
   has_many :reviews, through: :bookings
+  has_many_attached :photos
 
   geocoded_by :location
 
   validates :name, :year, :seats, :price, :location, presence: true
   after_validation :geocode, if: :will_save_change_to_location?
+
+  def search_bookings_by_status(status = [])
+    bookings.where(status: status)
+  end
 
   def unavailable_dates
     # get an array of [start_date, end_date] then map into Hash object
@@ -17,6 +22,13 @@ class Car < ApplicationRecord
 
   def can_book_for?(start_date, end_date)
     !bookings.exists?(['start_date >= ? AND end_date <= ?', start_date, end_date])
+  end
+
+  def average_rating
+    my_reviews = reviews
+    return 0 if my_reviews.count.zero?
+
+    my_reviews.reduce(0) { |sum, review| sum + review.rating }.fdiv(my_reviews.count).ceil(2)
   end
 
   # include PgSearch::Model

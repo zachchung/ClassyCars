@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
-
-  booking_status = %w[pending confirmed cancelled returned renting]
-
+  before_action :booking_set, only: [:show, :modify]
+  
   def new
     @booking = Booking.new
   end
@@ -9,14 +8,12 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.status = "pending"
-    # issues if booking dates are not valid, need to redirect_to show page again
+    @booking.booking_price = (@booking.car.price * @booking.duration).round(2)
+
     if @booking.save
       redirect_to @booking
     else
       redirect_to car_path(@booking.car), alert: @booking.errors['dates'].first
-      # Keep this to check with TAs tomorrow
-      # redirect_to car_path(@booking.car), alert: @booking.errors['dates'].first, data: { data_booking: @booking, data_car: @booking.car  }
-      # render template: 'cars/show', data: @booking, alert: @booking.errors['dates'].first
     end
   end
 
@@ -25,15 +22,49 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find(params[:id])
-    @days = (@booking.end_date.day - @booking.start_date.day).to_i
-    # @days = ((@booking.end_date - @booking.start_date) / 60 / 60 / 24).to_i
-    @booking_price = (@booking.car.price * @days).round(2)
+    redirect_to bookings_path, notice: "Booking is not found." unless belongs_to_user?
+  end
+
+  def modify
+    redirect_to listmycars_cars_path, notice: "Booking is not found." unless belongs_to_user?
+
+    case params[:my_action]
+    when "approve" then approve_booking(@booking)
+    when "decline" then decline_booking(@booking)
+    end
   end
 
   private
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :car_id, :user_id)
+  end
+
+  def booking_set
+    @booking = Booking.find(params[:id])
+  end
+
+  def approve_booking(booking)
+    message = ""
+    if booking.approved
+      message = "Booking is approved!"
+    else
+      message = "Failed to approve booking. Errors: #{booking.errors}"
+    end
+    redirect_to listmycars_cars_path, notice: message
+  end
+
+  def decline_booking(booking)
+    message = ""
+    if booking.declined
+      message = "Booking is declined!"
+    else
+      message = "Failed to decline booking. Errors: #{booking.errors}"
+    end
+    redirect_to listmycars_cars_path, notice: message
+  end
+
+  def belongs_to_user?
+    @booking.car.user == current_user || current_user.booking_ids.include?(@booking.id)
   end
 end

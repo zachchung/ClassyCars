@@ -1,22 +1,21 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  # root to: 'cars#index'
+
   resources :cars do
     get :listmycars, on: :collection
-
-
   end
+
   resources :reviews, only: :destroy
-  resources :bookings do
+
+  resources :bookings, except: [:destroy] do
     resources :reviews, only: [:new, :create]
   end
+  patch '/booking/:id', to: 'bookings#modify', as: :modify_booking
 
   get "cars/search", to: "cars#search"
   get "/users", to: redirect("/404")
 end
-
-
 
 # BELOW ROUTES GENERATED:
 # GET    /                 cars#index

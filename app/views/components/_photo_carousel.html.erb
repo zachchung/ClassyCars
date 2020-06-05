@@ -1,9 +1,13 @@
 <% unique_id = "carouselIndicators-#{car.id}" %>
 <% unique_href = "##{unique_id}" %>
-<% photo = ["https://images.unsplash.com/photo-1587750059638-e7e8c43b99fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80", "https://images.unsplash.com/photo-1508171997656-fdf7cf6c4df9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"] %>
 
+<% first_image = car.photos[0] ? cl_image_path(car.photos[0].key) : "http://loremflickr.com/800/500/automobile?random=#{(rand(1..0))}" %>
+<% second_image = car.photos[1] ? cl_image_path(car.photos[1].key) : "http://loremflickr.com/800/500/automobile?random=#{(rand(1..0))}" %>
+<% third_image = car.photos[2] ? cl_image_path(car.photos[2].key) : "http://loremflickr.com/800/500/automobile?random=#{(rand(1..0))}" %>
+<% photo = [first_image, second_image, third_image] %>
+<%#= raise %>
 
-<div id=<%= unique_id %> class="carousel slide" data-ride="carousel">
+<div id=<%= unique_id %> class="carousel slide <%= width unless defined?(width).nil? %>" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target=<%= unique_href %> data-slide-to="0" class="active"></li>
     <% 2.times do |time| %>
@@ -26,3 +30,4 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+

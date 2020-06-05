@@ -1,0 +1,29 @@
+<%# This partial will contain list of bookings in table format %>
+<%# Input: bookings %>
+<%# Out: a table of bookings WITHOUT table header %>
+
+<% unless bookings.count.zero? %>
+<%# Hide if on mobile, show if tablet or computer %>
+<div class="row">
+  <% bookings.reverse.each do |booking| %>
+  <div class="col-12 col-md-6 col-lg-4 mb-3">
+  <div class="card p-3">
+    <div class="card-body px-0">
+      <h4 class="card-title"><%= booking.user.fullname %></h4>
+      <%= link_to "View booking", booking_path(booking), class: "text-link" %>
+      <div class="card-text mt-2 mb-1"><%= formatted_date(booking.start_date) %></div>
+      <div class="card-text mb-1"><%= formatted_date(booking.end_date) %></div>
+      <div class="card-text mb-1">AUD <%= booking.booking_price %></div>
+      <div class="card-text text-muted mb-1"><%= booking.status %></div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <%= link_to "Approve", modify_booking_path(booking, my_action: "approve"), method: :patch, class: "w-100 mr-2 btn btn-lg text-white btn-primary" %>
+      <%= link_to "Decline", modify_booking_path(booking, my_action: "decline"), method: :patch, class: "w-100 btn btn-lg btn-outline-dark" %>
+    </div>
+  </div>
+  </div>
+  <% end %>
+</div>
+<% else %>
+  <span class="text-muted">No booking found!</span>
+<% end %>

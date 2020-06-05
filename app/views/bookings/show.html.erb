@@ -1,30 +1,26 @@
-<div class="d-flex justify-content-between">
-  <div>
+<div class="row">
+  <div class="col-12 col-lg-6">
     <h1>Confirmation</h1>
-    <p>
-      Congratulations, <%= @booking.user.first_name %>!
-      <br><br>
-      You have booked a car in <%= @booking.car.location %> for <%= @days %> days
-      <br><br>
-      TODO: insert car photo here
-      <br><br>
-      Booking reference: <%= @booking.id %>
-    </p>
 
-    <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
+    <p>Congratulations, <%= @booking.user.first_name %>!</p>
+    <p>You have booked a car in <%= @booking.car.location %> for <%= @days %> days</p>
+
+    <%= render 'components/photo_carousel', car: @booking.car, width: "w-60" %>
   </div>
 
-  <div class="card m-2 p-3">
+  <div class="col-12 col-lg-6">
+    <div class="card mt-5 p-3 ">
+      <p><strong>Model:</strong> <%= @booking.car.name %> (<%= @booking.car.seats %> seats)</p>
+      <p><strong>Model Year:</strong> <%= @booking.car.year %></p>
+      <p><strong>Location:</strong> <%= @booking.car.location %></p>
+      <p><strong>Dates: </strong><%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
 
-    <p><strong> Model:</strong> <%= @booking.car.name %> (<%= @booking.car.seats %> seats)</p>
-    <p><strong> Model Year:</strong> <%= @booking.car.year %></p>
-    <p><strong>Location:</strong> <%= @booking.car.location %></p>
-    <p><strong>Dates:</strong> <%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
-
-    <p> $<%= @booking.car.price %> x <%= @days %> days </p>
-    <p> <strong>Total price:</strong> $<%= @booking_price %> </p>
-    <p> <strong>Status:</strong> <%= @booking.status %> </p>
-
+      <p> $<%= @booking.car.price %> x <%= @booking.duration %> days </p>
+      <p> <strong>Total price:</strong> $<%= @booking.booking_price %> </p>
+      <p> <strong>Status:</strong> <%= @booking.status %> </p>
+      <p> <strong>Itenerary #</strong>  <%= @booking.id %></p>
+      <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
+    </div>
   </div>
 </div>
 
