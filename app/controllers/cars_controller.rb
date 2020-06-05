@@ -27,7 +27,12 @@ class CarsController < ApplicationController
 
   def index
     # @cars = Car.all
-    @cars = Car.geocoded # returns cars with coordinates
+    @geocoded_cars = Car.geocoded # returns cars with coordinates
+    if params[:query].present?
+      @cars = @geocoded_cars.search_by_name_and_location(params[:query])
+    else
+      @cars = @geocoded_cars
+    end
 
     @markers = @cars.map do |car|
       {
