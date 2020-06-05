@@ -24,6 +24,13 @@ class Car < ApplicationRecord
     !bookings.exists?(['start_date >= ? AND end_date <= ?', start_date, end_date])
   end
 
+  def average_rating
+    my_reviews = reviews
+    return 0 if my_reviews.count.zero?
+
+    my_reviews.reduce(0) { |sum, review| sum + review.rating }.fdiv(my_reviews.count).ceil(2)
+  end
+
   # include PgSearch::Model
   # multisearchable against: [:location]
 end

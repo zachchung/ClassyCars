@@ -10,13 +10,13 @@
 
   <div class="col-12 col-lg-6">
     <div class="card mt-5 p-3 ">
-      <p><strong> Model:</strong> <%= @booking.car.name %> (<%= @booking.car.seats %> seats)</p>
-      <p><strong> Model Year:</strong> <%= @booking.car.year %></p>
+      <p><strong>Model:</strong> <%= @booking.car.name %> (<%= @booking.car.seats %> seats)</p>
+      <p><strong>Model Year:</strong> <%= @booking.car.year %></p>
       <p><strong>Location:</strong> <%= @booking.car.location %></p>
-      <p><strong>Dates:</strong> <%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
+      <p><strong>Dates: </strong><%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
 
-      <p> $<%= @booking.car.price %> x <%= @days %> days </p>
-      <p> <strong>Total price:</strong> $<%= @booking_price %> </p>
+      <p> $<%= @booking.car.price %> x <%= @booking.duration %> days </p>
+      <p> <strong>Total price:</strong> $<%= @booking.booking_price %> </p>
       <p> <strong>Status:</strong> <%= @booking.status %> </p>
       <p> <strong>Itenerary #</strong>  <%= @booking.id %></p>
       <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>

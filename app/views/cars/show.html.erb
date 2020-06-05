@@ -1,79 +1,59 @@
-<h1>Here is your Car</h1>
-<br>
-<div class= "d-flex justify-content-between">
-  <div id="carouselExampleCaptions" class="carousel slide p-2 w-100 bd-highlight" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <% first_image = @car.photos[0] ? cl_image_path(@car.photos[0].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
-      <img src=<%= first_image %> class="d.d-none-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Fast</h5>
-        <p></p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <% second_image = @car.photos[1] ? cl_image_path(@car.photos[1].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
-      <img src=<%= second_image %> class="d.d-none-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Classy</h5>
-        <p></p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <% second_image = @car.photos[2] ? cl_image_path(@car.photos[2].key) : "http://loremflickr.com/800/500/automobile?random=#{(1..100).to_a.sample}" %>
-      <img src=<%= second_image %> class="d.d-none-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Cool</h5>
-        <p></p>
-      </div>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
 <% defined?(@car).nil? ? car = @booking.car : car = @car  %>
 
-<div class="shadow p-3 mb-5 bg-white rounded">
-  <p> Your car details are as follows</p>
-  <ul>
-    <li><p>Name: <%= car.name %></p></li>
-    <li><p>Location: <%= car.location %></p></li>
-    <li><p>Price/day: <%= car.price %></p></li>
-    <li><p>Number of seats: <%= car.seats %></p></li>
-    <li><p>Make year: <%= car.year %></p></li>
-  </ul>
-</div>
+<div class= "offset-md-1 col-md-10 offset-lg-2 col-lg-8 mt-4 bg-white">
+
+  <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-3 pt-5">
+    <h1 class="mt-3 mb-5 font-weight-bold"><%= car.name %></h1>
+  </div>
+
+  <div class="product offset-lg-1 col-lg-10 pb-4">
+    <%= render 'components/photo_carousel', car: car %>
+  </div>
+
+  <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-3">
+    
+    <div class="pb-4">
+      <p class="text-muted">Location</p>
+      <h5><%= car.location %></h5>
+    </div>
+    <div class="pb-4">
+      <p class="text-muted">Price per day</p>
+      <h5>AUD $<%= car.price %></h5>
+    </div>
+    <div class="pb-4">
+      <p class="text-muted">Number of seats</p>
+      <h5><%= car.seats %></h5>
+    </div>
+    <div class="pb-4">
+      <p class="text-muted">Make year</p>
+      <h5><%= car.year %></h5>
+    </div>
+  </div>
 </div>
 
-<div>
+<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-5 mb-5 mt-5 bg-white">
+  <h3>Book Now</h3>
+  <%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>
+</div>
+
+<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-5 mb-5 mt-5 bg-white">
   <h3>Reviews</h3>
-  <div>
   <% if @reviews.size != 0 %>
-  <% @reviews.each do |review| %>
-  <ul class="shadow p-1 mb-1 bg-white rounded" style = "list-style-type: none;">
-    <li><p> Description: <%= review.description %></li>
-    <li><p> Rating: <%= review.rating %></p></li>
-    <% if current_user.car_ids.include? review.booking.car.id %>
-      <li><%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger m-2" %></li>
+    <% @reviews.each_with_index do |review, _index| %>
+    <%= "<hr>".html_safe if _index != 0 %>
+    <div class="d-flex">
+      <div class="w-25">logo</div>
+      <div class="w-75">
+        <div><%= rating_as_stars(review.rating) %></div>
+        <div> Description: <%= review.description %></div>
+        <% if current_user.car_ids.include? review.booking.car.id %>
+        <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?" }, 
+                    class: "mt-3 btn btn-sm btn-outline-dark" %>
+        <% end %>
+      </div>
+    </div>
     <% end %>
-  </ul>
-    <% end %>
-<% else %>
-  <h4>No reviews so far</h4>
-<% end %>
+  <% else %>
+    <p>No reviews so far</p>
+  <% end %>
 </div>
-
-<h3 class= "mt-5">Book Now</h3>
-<%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>

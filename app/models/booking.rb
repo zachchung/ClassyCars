@@ -31,4 +31,8 @@ class Booking < ApplicationRecord
   def declined
     update(status: BOOKING_STATUS[:declined])
   end
+
+  def duration
+    (end_date - start_date).to_i
+  end
 end
