@@ -1,5 +1,8 @@
-<%= simple_form_for [ @booking, @review ] do |f| %>
-  <%= f.input :description %>
-  <%= f.input :rating %>
-  <%= f.submit "Submit review", class: "btn btn-primary" %>
-<% end %>
+<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-5 mb-5 mt-5 bg-white">
+  <h1>Tell us your experience</h1>
+  <%= simple_form_for [ @booking, @review ] do |f| %>
+    <%= f.input :description %>
+    <%= f.input :rating, as: :select, collection: 1..5, selected: 5 %>
+    <%= f.submit "Submit review", class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>
