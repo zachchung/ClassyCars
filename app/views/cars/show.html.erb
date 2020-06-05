@@ -1,59 +1,67 @@
-<% defined?(@car).nil? ? car = @booking.car : car = @car  %>
+<%# raise %>
+<div class="row justify-content-between">
+  <div class="col-12 col-lg-8">
+    <div class="card p-3 mt-3 mb-3">
+      <% defined?(@car).nil? ? car = @booking.car : car = @car  %>
+      <div class="text-center">
+        <h1 class="mt-3 mb-5 font-weight-bold"><%= car.name %></h1>
+      </div>
 
-<div class= "offset-md-1 col-md-10 offset-lg-2 col-lg-8 mt-4 bg-white">
+      <div class="product offset-lg-1 col-lg-10 pb-4">
+        <%= render 'components/photo_carousel', car: car %>
+      </div>
 
-  <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-3 pt-5">
-    <h1 class="mt-3 mb-5 font-weight-bold"><%= car.name %></h1>
-  </div>
+      <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-3">
+        <div class="pb-4">
+          <p class="text-muted">Location</p>
+          <h5><%= car.location %></h5>
 
-  <div class="product offset-lg-1 col-lg-10 pb-4">
-    <%= render 'components/photo_carousel', car: car %>
-  </div>
+          <p class="text-muted">Price per day</p>
+          <h5>AUD $<%= car.price %></h5>
 
-  <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-3">
-    
-    <div class="pb-4">
-      <p class="text-muted">Location</p>
-      <h5><%= car.location %></h5>
-    </div>
-    <div class="pb-4">
-      <p class="text-muted">Price per day</p>
-      <h5>AUD $<%= car.price %></h5>
-    </div>
-    <div class="pb-4">
-      <p class="text-muted">Number of seats</p>
-      <h5><%= car.seats %></h5>
-    </div>
-    <div class="pb-4">
-      <p class="text-muted">Make year</p>
-      <h5><%= car.year %></h5>
-    </div>
-  </div>
-</div>
+          <p class="text-muted">Number of seats</p>
+          <h5><%= car.seats %></h5>
 
-<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-5 mb-5 mt-5 bg-white">
-  <h3>Book Now</h3>
-  <%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>
-</div>
-
-<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-5 mb-5 mt-5 bg-white">
-  <h3>Reviews</h3>
-  <% if @reviews.size != 0 %>
-    <% @reviews.each_with_index do |review, _index| %>
-    <%= "<hr>".html_safe if _index != 0 %>
-    <div class="d-flex">
-      <div class="w-25">logo</div>
-      <div class="w-75">
-        <div><%= rating_as_stars(review.rating) %></div>
-        <div><%= review.description %></div>
-        <% if current_user.car_ids.include? review.booking.car.id %>
-        <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?" }, 
-                    class: "mt-3 btn btn-sm btn-outline-dark" %>
-        <% end %>
+          <p class="text-muted">Make year</p>
+          <h5><%= car.year %></h5>
+        </div>
       </div>
     </div>
-    <% end %>
-  <% else %>
-    <p>No reviews so far</p>
-  <% end %>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <div class="card p-3 mt-3 m-2">
+      <h3>Book Now</h3>
+      <%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>
+    </div>
+
+    <div class="card p-3 m-2">
+      <h3>Reviews</h3>
+      <% if @reviews.size != 0 %>
+        <% @reviews.each_with_index do |review, _index| %>
+        <%= "<hr>".html_safe if _index != 0 %>
+        <div class="d-flex">
+          <div class="w-25">logo</div>
+          <div class="w-75">
+            <div><%= rating_as_stars(review.rating) %></div>
+            <div><%= review.description %></div>
+            <% if current_user.car_ids.include? review.booking.car.id %>
+            <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?" },
+                        class: "mt-3 btn btn-sm btn-outline-dark" %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      <% else %>
+        <p>No reviews so far</p>
+      <% end %>
+    </div>
+
+    <div id="map"
+    class="m-2 p-3 w-100"
+          style="height: 300px;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
 </div>
