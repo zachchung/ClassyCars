@@ -2,9 +2,16 @@
 <div class="row">
   <div class="cars-list col-12 col-md-6">
     <ul class="list-group list-group-flush">
-    <% @cars.each do |car| %>
-      <li class="list-group-item"><%= render 'components/car_card', car: car %></li>
-    <% end %>
+      <%# raise %>
+      <% if @cars.empty? %>
+        <h4 class="mt-5 text-center"> Sorry, your favorite Classy is not here yet </h4>
+        <h4 class="text-center"> Please try another location or model! </h4>
+        <%= link_to "Search again", root_path, class: "text-center" %>
+      <% else %>
+        <% @cars.each do |car| %>
+          <li class="list-group-item"><%= render 'components/car_card', car: car %></li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
   <div id="map" class="d-none d-md-block col-md-6"
