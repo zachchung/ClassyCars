@@ -11,7 +11,6 @@ const initFlatpickr = () => {
   if (startDateInput) {
     const unavailableDates = JSON.parse(startDateInput.dataset.unavailableDates);
     endDateInput.disabled = true
-    console.log(unavailableDates);
     
     flatpickr(startDateInput, {
       minDate: "today",

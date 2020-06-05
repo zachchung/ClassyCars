@@ -16,7 +16,7 @@
           <h5><%= car.location %></h5>
 
           <p class="text-muted">Price per day</p>
-          <h5>AUD $<%= car.price %></h5>
+          <h5>AUD <%= car.price %></h5>
 
           <p class="text-muted">Number of seats</p>
           <h5><%= car.seats %></h5>
@@ -34,13 +34,25 @@
       <%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>
     </div>
 
+<!-- <<<<<<< HEAD -->
     <div class="card p-4 mb-3">
+<!-- =======
+    <div class="card p-3 m-2">
+      <div id="map" class="w-100"
+            style="height: 300px;"
+            data-markers="<%= @markers.to_json %>"
+            data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+
+    <div class="card p-3 m-2">
+>>>>>>> master -->
       <h3>Reviews</h3>
       <% if @reviews.size != 0 %>
         <% @reviews.each_with_index do |review, _index| %>
         <%= "<hr>".html_safe if _index != 0 %>
         <div class="d-flex">
-          <div class="w-25">logo</div>
+          <div class="w-25"></div>
           <div class="w-75">
             <div><%= rating_as_stars(review.rating) %></div>
             <div><%= review.description %></div>
@@ -56,11 +68,14 @@
       <% end %>
     </div>
 
+<!-- <<<<<<< HEAD -->
     <div id="map"
     class=""
           style="height: 300px;"
           data-markers="<%= @markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
+<!-- =======
+>>>>>>> master -->
   </div>
 </div>

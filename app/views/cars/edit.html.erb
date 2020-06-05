@@ -1,3 +1,6 @@
+<div class="mt-4">
+  <%= link_to "< Back", :back %>
+</div>
 <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-5 mb-5 mt-5 bg-white">
   <h1>Edit car <%= @car.name %></h1>
   <%= simple_form_for(@car) do |f| %>
@@ -6,6 +9,6 @@
     <%= f.input :price %>
     <%= f.input :seats %>
     <%= f.input :year %>
-    <%= f.submit 'Update car', class: "btn btn-primary m-2"  %>
+    <%= f.submit 'Update car', class: "btn btn-lg btn-primary"  %>
   <% end %>
 </div>

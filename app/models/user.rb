@@ -13,4 +13,8 @@ class User < ApplicationRecord
     name = "#{first_name} #{last_name}"
     name.strip
   end
+
+  def pending_requests
+    Booking.joins(:car).where(cars: { user: self }).where(status: Booking::BOOKING_STATUS[:pending])
+  end
 end
