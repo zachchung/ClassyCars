@@ -4,7 +4,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 3000 });
+  map.fitBounds(bounds);
 };
 
 const addMarkersToMap = (map, markers) => {
@@ -34,7 +34,7 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10'
+      style: 'mapbox://styles/mapbox/light-v10'
     });
     const markers = JSON.parse(mapElement.dataset.markers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
@@ -44,6 +44,14 @@ const initMapbox = () => {
     if (Object.keys(markers).length > 0) {
       addMarkersToMap(map, markers);
       fitMapToMarkers(map, markers);
+      map.flyTo({
+        center: [markers[0].lng, markers[0].lat],
+        zoom: 12,
+        essential: true,
+        padding: 70,
+        duration: 3000,
+        essential: true
+      })
     }
   }
 };

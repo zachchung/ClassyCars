@@ -2,8 +2,8 @@ require 'faker'
 require "open-uri"
 
 puts "--- Starting populating database"
-suburbs = %w[Brunswick Melbourne South\ Yarra Docklands South\ Melbourne Footscray Richmond Fitzroy Carlton Collingwood St\ Kilda Kensington windsor malvern hawthorn];
-booking_status = %w[confirmed cancelled returned renting]
+suburbs = %w[Brunswick Melbourne South\ Yarra Docklands South\ Melbourne Footscray Richmond Fitzroy Carlton Collingwood St\ Kilda Kensington Windsor Malvern Hawthorn];
+booking_status = %w[confirmed cancelled returned renting declined]
 
 # Sample Users
 puts "--- Generate User"
@@ -12,7 +12,7 @@ user = User.create!(
   first_name: "Zach",
   last_name: "Chung",
   email: "zach@cars.com",
-  address: "Melbourne, AUS",
+  address: "Melbourne, VIC, AU",
   password: "123123"
   )
 
@@ -20,16 +20,18 @@ second_user = User.new(
   first_name: "Erik",
   last_name: "Tran",
   email: "erik@cars.com",
-  address: "Brunswick, Melbourne, AUS",
+  address: "Brunswick, VIC, AU",
 )
 second_user.password = "abc123"
+file = File.open("app/assets/images/profile-erik.jpg")
+second_user.photo.attach(io: file, filename: 'profile-erik.jpg', content_type: 'image/jpeg')
 second_user.save!
 
 third_user = User.new(
   first_name: "Harshil",
   last_name: "Siyani",
   email: "harshil@cars.com",
-  address: "Melbourne, AUS",
+  address: "Melbourne, VIC, AU",
 )
 third_user.password = "abc123"
 third_user.save!
@@ -45,7 +47,7 @@ car = Car.create!(
   year: 2013,
   seats: 11,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "#{suburbs.sample}, VIC, AU",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://vistapointe.net/images/vw-minibus-1.jpg')
@@ -60,7 +62,7 @@ car = Car.create!(
   year: 2046,
   seats: 1,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "#{suburbs.sample}, VIC, AU",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://postmediadriving.files.wordpress.com/2018/02/tumbler-batmobile-replica.jpg')
@@ -75,7 +77,7 @@ car = Car.create!(
   year: 1990,
   seats: 1,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "#{suburbs.sample}, VIC, AU",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://cdn.vox-cdn.com/thumbor/WXaYJI47OmpEBPs2490y3OVQ6OM=/0x0:1920x1158/1200x800/filters:focal(612x320:918x626)/cdn.vox-cdn.com/uploads/chorus_image/image/63881293/WiiU_MK8_artwork_07__1_.0.jpg')
@@ -90,7 +92,7 @@ car = Car.create!(
   year: 2020,
   seats: 2,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "#{suburbs.sample}, VIC, AU",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://image.cnbcfm.com/api/v1/image/106010244-1562708838619bencon-1.jpg?v=1562708869')
@@ -103,7 +105,7 @@ car = Car.create!(
   year: 2022,
   seats: 6,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "#{suburbs.sample}, VIC, AU",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://i.insider.com/5dd85153fd9db24cee2399db?width=1065&format=jpeg')
@@ -111,26 +113,8 @@ file3 = URI.open('https://cdn.motor1.com/images/mgl/jyq8l/s1/tesla-cybertruck-co
 car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
 
-
-# # Template for new cars:
-# car = Car.create!(
-#   name: "",
-#   year: 1990,
-#   seats: 1,
-#   price: rand(50..100) + rand.floor(2),
-#   location: "#{suburbs.sample}, AU",
-#   user_id: users.sample.id,
-#   )
-# file1 = URI.open('')
-# file2 = URI.open('')
-# file3 = URI.open('')
-# car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
-# car.photos.attach(io: file2, filename: 'car2.jpeg', content_type: 'image/jpeg')
-# car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
-
-
 # Sample Cars
-10.times do
+5.times do
   car = Car.new(
     name: "#{Faker::Vehicle.make_and_model}",
     year: rand(1900..1980),

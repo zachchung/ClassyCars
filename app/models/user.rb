@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :bookings
 
   validates :first_name, :last_name, presence: true
+  has_one_attached :photo
 
   def fullname
     name = "#{first_name} #{last_name}"

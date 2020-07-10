@@ -5,12 +5,12 @@
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
+@import 'mapbox-gl/dist/mapbox-gl';
+@import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder';
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "flatpickr/dist/flatpickr";
 @import "flatpickr/dist/themes/airbnb";
-@import 'mapbox-gl/dist/mapbox-gl';
-@import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder';
 
 // Your CSS partials
 @import "components/index";
